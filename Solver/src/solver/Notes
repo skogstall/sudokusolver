@@ -67,6 +67,9 @@ sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte 
             Lista section
             tile(x,y){
                 coords = new Coords(x,y)
+                cols = generateCol(y)
+                rows = generateRows(y)
+                section = generateSec(x,y)
 
             }
             generateCol(y){
@@ -85,10 +88,31 @@ sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte 
                 returnera lista
             }
             generateSec(x,y){
+                lista xvärden
+                lista yvärden
+                lista section
+                int iterator = 0
+                if(x är mindre än 4){
+                    xvärden = 1,2,3
+                }
+                else if(x är större än 6){
+                    xvärden = 7,8,9
+                }
+                annars
+                    xvärden = 4,5,6
+                }
+                Samma övre grej fast för yvärden
 
-                if(x är mellan 1 och 3)
+                for(xt i xvärden){
+                    for(yt i yvärden)
+                        section[iterator]= new Coord(xt,yt)
+                        iterator++
+                }
 
+                returnera section
             }
+
+
 
 
 
