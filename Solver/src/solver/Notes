@@ -37,11 +37,11 @@ sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte 
 
         Lite ideer om hur jag ska gå tillväga
 
-            Jag har en multidimensionell array (9, 9)
+            Jag har en multidimensionell array (9, 9) som heter sudoku[]
 
             Om man har en till multidimensionell av samma storlek, som har vilken rad och kolumn samt ruta varje index tillhår kan man ba referera till den i funktionen
-            Den kan vara fylld av objekt som heter typ något typ "tileinfo" som har row, col och sections som data. de olika värdena är
-            en array med koordinaterna i typ en touple för de raderna/kolumnerna/sektionerna. coords är en touple typ
+            Den kan vara fylld av objekt som heter typ något typ "tileinfo" som har row, col och sections som värden. de olika värdena är
+            en lista med koordinaterna i typ en touple för de raderna/kolumnerna/sektionerna. coords är en touple typ
 
             [][][] [][][] [][][]
             [][][] [][][] [][][]
