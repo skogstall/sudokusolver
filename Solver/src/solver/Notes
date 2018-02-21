@@ -1,1 +1,35 @@
-jkjsdhfkjwedhfkjehf
+Gillis gör rekursiva lösaren
+
+   När användare matat in siffror i rutor och begärt att få se en lösning kan olika fall inträffa:
+   • Det saknas lösning. Då ska programmet upptäcka och meddela detta.
+   • Det finns flera lösningar. Då räcker det att programmet finner en lösning och presenterar
+   denna.
+   • Det finns en enda lösning. Då ska denna hittas och presenteras.
+   Alla dessa fall kan hanteras av en rekursiv metod som använder backtracking. Metoden kan ha
+   följande signatur:
+
+   private boolean solve(int i, int j);
+
+    För att lösa problemet startar man på rutan längst uppe till vänster, (0,0), vilket motsvarar ett
+    anrop solve(0,0). För en enskild ruta (nedan kallad aktuell ruta) finns det två fall:
+
+    1. Aktuell ruta är inte från början fylld (av användaren). Då provar man i tur och ordning
+    att fylla den med något av talen 1..9. För varje sådant val kontrollerar man först att det är
+    möjligt med hänsyn till reglerna för Sudoku. Om det är möjligt fyller man i rutan och gör
+    ett rekursivt anrop för nästa ruta. Med nästa ruta avses här rutan till höger om aktuell ruta
+    eller (om aktuell ruta är den sista på en rad) första rutan på nästa rad. Om det inte går att
+    fylla aktuell ruta med något av alternativen eller om de rekursiva anropen returnerar false
+    för alla de alternativ man provar, så markeras aktuell ruta som som ej ifylld (backtracking)
+    och man returnerar false. Om däremot något av de rekursiva anropen returnerar true så
+    har man hittat en lösning och kan returnera true.
+
+    2. Aktuell ruta är från början fylld (av användaren). Då ska vi inte prova några alternativ utan
+    bara kontrollera att det som är ifyllt är ok enligt reglerna. Om så är fallet görs ett rekursivt
+    anrop för nästa ruta och resultatet av detta returneras. Om den ifyllda rutan däremot inte
+    uppfyller villkoren har man misslyckats och returnerar false
+
+
+För båda alternativen ovan gäller att om ”nästa ruta” inte finns (d.v.s. vi har gått igenom hela
+rutnätet) så har vi lyckats fylla i alla rutor och kan returnera true.
+Observera att den här lösningen medför att många alternativ ska provas. I vissa fall av olösliga
+sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte finns
