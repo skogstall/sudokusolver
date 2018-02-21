@@ -40,9 +40,8 @@ sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte 
             Jag har en multidimensionell array (9, 9)
 
             Om man har en till multidimensionell av samma storlek, som har vilken rad och kolumn samt ruta varje index tillhår kan man ba referera till den i funktionen
-            [][][] [][][] [][][]
-            [][][] [][][] [][][]
-            [][][] [][][] [][][]
+            Den kan vara fylld av objekt som heter typ något typ "tileinfo" som har row, col och sections som data. de olika värdena är
+            en array med koordinaterna i typ en touple för de raderna/kolumnerna/sektionerna. coords är en touple typ
 
             [][][] [][][] [][][]
             [][][] [][][] [][][]
@@ -52,20 +51,101 @@ sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte 
             [][][] [][][] [][][]
             [][][] [][][] [][][]
 
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
 
-            Solve( x, y)
-                Om inte x coh y är ÖVER 9 9, Så kör, annars returnera true
-                Uppdatera x och y till rätt värde, x1, y1
+        object Coords
+            int x
+            int y
+            coords(x,y)
+                set this.x = x
+                set this.y = y
+        object tile
+            Lista<coords> cols
+            Lista rows
+            Lista section
+            tile(x,y){
+                coords = new Coords(x,y)
+
+            }
+            generateCol(y){
+                lista 1 till 9
+                for(i = ett till nio){
+                    lägg till
+                    coord(i,y)
+                }
+                returnera lista
+            generateCol(x){
+                lista 1 till 9
+                for(i = ett till nio){
+                    lägg till
+                    coord(x,i)
+                }
+                returnera lista
+            }
+            generateSec(x,y){
+
+                if(x är mellan 1 och 3)
+
+            }
+
+
+
+        Solve( x, y)
+            Om x och y är ÖVER 9 9, returnera true
+            annars
+                (Uppdatera x och y till rätt värde, x1, y1)
+                    om x inte är 9
+                        x1 = x+1
+                        y1 = y
+                    annars
+                        x1= 1
+                        y1 = y+1
 
                 Är den ifylld?
                 nej
 
                     fyll i 1
-                        om summan av raden upp och ned inte är för stor
-                        och solve (x1, y1) är sant
-                            returnera sant
+                        checkvalid(x,y) och solve (x1, y1) är sant
                     annars fyll i 2
                         kolla samma
+                    .... fortsätt till 9
+                    annars
+                        returnera false
+
+
                 annars
-                    kör solve(x1,y1)
+                    om summan av raden upp och ned inte är för stor
+                        och solve (x1, y1) är sant
+                        returnera sant
+
+
+        Hjälpmetod för att kolla om det funkar behövs nog
+
+            CheckValid(x,y)
+
+                om någon av dessa är falska, returnera falsk
+                    checkList(tileinfo(x,y).cols
+                    checkList(tileinfo(x,y).rows
+                    checkList(tileinfo(x,y).sections
+                annars true
+
+            CheckList( lista med coords coordlist)
+                skapa en lista med 9 platser
+                skapa en index med platser
+                skapa en bool
+                for(coords in coordlist){
+                    om platsen(sudoku(coord.x, coord.y) inte är null
+                        fyll värdet (sudoku (coord.x coord.y))
+                        index++
+                }
+                return Checkduplicates(lista);
+
+            Checkduplicates(lista)
+                om lista.toset.size < lista.size
+                    returnera sant
+                annars
+                    returnera falskt
+
 
