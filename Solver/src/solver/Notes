@@ -33,3 +33,39 @@ För båda alternativen ovan gäller att om ”nästa ruta” inte finns (d.v.s.
 rutnätet) så har vi lyckats fylla i alla rutor och kan returnera true.
 Observera att den här lösningen medför att många alternativ ska provas. I vissa fall av olösliga
 sudokun tar det mycket lång tid innan man får besked om iatt en lösning inte finns
+
+
+        Lite ideer om hur jag ska gå tillväga
+
+            Jag har en multidimensionell array (9, 9)
+
+            Om man har en till multidimensionell av samma storlek, som har vilken rad och kolumn samt ruta varje index tillhår kan man ba referera till den i funktionen
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+            [][][] [][][] [][][]
+
+
+            Solve( x, y)
+                Om inte x coh y är ÖVER 9 9, Så kör, annars returnera true
+                Uppdatera x och y till rätt värde, x1, y1
+
+                Är den ifylld?
+                nej
+
+                    fyll i 1
+                        om summan av raden upp och ned inte är för stor
+                        och solve (x1, y1) är sant
+                            returnera sant
+                    annars fyll i 2
+                        kolla samma
+                annars
+                    kör solve(x1,y1)
+
