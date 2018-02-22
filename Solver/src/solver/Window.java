@@ -1,6 +1,8 @@
 package solver;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -60,6 +62,18 @@ public class Window extends Application{
                 public void paste() { }
             };
 
+            t.focusedProperty().addListener(new ChangeListener<Boolean>()
+            {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+                {
+                    if (newPropertyValue)
+                    {
+                       t.clear();
+                    }
+                }
+            });
+
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
@@ -82,7 +96,7 @@ public class Window extends Application{
 
         tilePane.addEventFilter( KeyEvent.KEY_PRESSED, ( KeyEvent event ) ->
         {
-            if ( event.getCode() == KeyCode.ENTER )
+            if ( event.getCode() == KeyCode.BACK_SPACE )
             {
                 KeyEvent newEvent
                         = new KeyEvent(
@@ -91,22 +105,20 @@ public class Window extends Application{
                         KeyEvent.KEY_PRESSED,
                         "",
                         "\t",
+
                         KeyCode.TAB,
-                        event.isShiftDown(),
+                        true,
                         event.isControlDown(),
                         event.isAltDown(),
                         event.isMetaDown()
                 );
-
                 Event.fireEvent( event.getTarget(), newEvent );
-                event.consume();
             }
         } );
     }
 
-
-
     public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
+
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -120,6 +132,20 @@ public class Window extends Application{
                     }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
                         e.consume();
                     }
+                    KeyEvent newEvent
+                            = new KeyEvent(
+                            null,
+                            null,
+                            KeyEvent.KEY_PRESSED,
+                            "",
+                            "\t",
+                            KeyCode.TAB,
+                            e.isShiftDown(),
+                            e.isControlDown(),
+                            e.isAltDown(),
+                            e.isMetaDown()
+                    );
+                    Event.fireEvent( e.getTarget(), newEvent );
                 }else{
                     e.consume();
                 }
