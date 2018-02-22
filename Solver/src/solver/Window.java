@@ -3,6 +3,7 @@ package solver;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,35 +18,42 @@ public class Window extends Application{
         launch(args);
     }
 
+    public void color(TilePane tilePane, int startValue){
+        for(int i = startValue; i<startValue +27; i= i +9) {
+            tilePane.getChildren().get(i).setStyle("-fx-background-color: #F5A9BC;");
+            tilePane.getChildren().get(i + 1).setStyle("-fx-background-color: #F5A9BC;");
+            tilePane.getChildren().get(i + 2).setStyle("-fx-background-color: #F5A9BC;");
+        }
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-//        BorderPane groot = new BorderPane();
-//        TilePane tilePane = new TilePane();
-//        tilePane.setPrefRows(9);
-//        tilePane.setPrefColumns(9);
-//        tilePane.setPrefWidth();
-//        tilePane.setPrefHeight();
-//
-//        HBox knappar = new HBox();
-//
-//        Scene scene = new Scene(groot, 500, 500);
-//        primaryStage.setTitle("Skogstall och Hackspetts Sudoku");
-//        primaryStage.setScene(scene);
-//        primaryStage.setResizable(false);
-//        primaryStage.show();
-//
-//        for(int i = 1; i<81; i++){
-//            TextField t = new TextField();
-//            t.setPrefSize(40,40);
-//            tilePane.getChildren().add(t);
-//        }
-//        for(int i = 0; i< tilePane.getChildren().size() - 1; i++){
-//        }
-//
-//
-//
-//
-//        groot.setTop(tilePane);
+        BorderPane groot = new BorderPane();
+        TilePane tilePane = new TilePane();
+        Scene scene = new Scene(groot, 40*9 + 3*15, 40*9 + 8*3 + 30*2);
+        primaryStage.setTitle("Skogstall och Hackspetts Sudoku");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+        HBox knappar = new HBox();
+        Button button1 = new Button("Solve");
+        Button button2 = new Button("Clear");
+        button1.setPrefSize(50,30);
+        button2.setPrefSize(50,30);
 
+        for(int i = 1; i<=81; i++){
+            TextField t = new TextField();
+            t.setPrefSize(40,40);
+            tilePane.getChildren().add(t);
+            tilePane.setMargin(t, new Insets(3));
+        }
+        color(tilePane, 0);
+        tilePane.setStyle("-fx-background-color: #B4045F;");
+        knappar.setStyle("-fx-background-color: #424242;");
+        knappar.getChildren().addAll(button1,button2);
+        knappar.setMargin(button1, new Insets(6));
+        knappar.setMargin(button2, new Insets(6));
+        groot.setTop(tilePane);
+        groot.setBottom(knappar);
     }
 }
