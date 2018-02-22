@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -44,6 +45,7 @@ public class Window extends Application{
         for(int i = 1; i<=81; i++){
             TextField t = new TextField();
             t.setPrefSize(40,40);
+            t.setAlignment(Pos.CENTER);
             tilePane.getChildren().add(t);
             tilePane.setMargin(t, new Insets(3));
         }
@@ -56,7 +58,9 @@ public class Window extends Application{
         knappar.setStyle("-fx-background-color: #424242;");
         knappar.getChildren().addAll(button1,button2);
         knappar.setMargin(button1, new Insets(6));
-        knappar.setMargin(button2, new Insets(6));
+        for(int i=1; i<81; i++){
+            tilePane.getChildren().get()
+        }
         groot.setTop(tilePane);
         groot.setBottom(knappar);
     }
