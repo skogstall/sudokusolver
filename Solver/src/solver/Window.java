@@ -48,6 +48,10 @@ public class Window extends Application{
             tilePane.setMargin(t, new Insets(3));
         }
         color(tilePane, 0);
+        color(tilePane, 6);
+        color(tilePane, 30);
+        color(tilePane, 54);
+        color(tilePane, 60);
         tilePane.setStyle("-fx-background-color: #B4045F;");
         knappar.setStyle("-fx-background-color: #424242;");
         knappar.getChildren().addAll(button1,button2);
