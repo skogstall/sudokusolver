@@ -45,6 +45,7 @@ public class Window extends Application{
 
         for(int i = 1; i<=81; i++){
             TextField t = new TextField();
+            t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
             tilePane.getChildren().add(t);
@@ -76,7 +77,7 @@ public class Window extends Application{
                 if (txt_TextField.getText().length() >= max_Lengh) {
                     e.consume();
                 }
-                if(e.getCharacter().matches("[0-9.]")){
+                if(e.getCharacter().matches("[1-9.]")){
                     if(txt_TextField.getText().contains(".") && e.getCharacter().matches("[.]")){
                         e.consume();
                     }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
