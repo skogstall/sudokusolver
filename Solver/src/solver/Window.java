@@ -50,8 +50,8 @@ public class Window extends Application{
         button2.setPadding(Insets.EMPTY);
         button1.setPrefSize(50,30);
         button2.setPrefSize(50,30);
-        button1.setStyle("-fx-background-color: #F6CED8;");
-        button2.setStyle("-fx-background-color: #F6CED8;");
+        button1.setStyle("-fx-background-color: #FBEFF2;");
+        button2.setStyle("-fx-background-color: #FBEFF2;");
         ArrayList<Integer> nbr = new ArrayList<>();
         for(int i = 1; i<=81; i++){
             TextField t = new TextField(){
