@@ -1,10 +1,13 @@
 package solver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Solver {
-    ArrayList<Integer>[][] sudoku = new ArrayList[9][9];
+    //Håller koll på värdena för sudukorutnätet
+    //Håller koll på vilken rad, kolumn, och sektion av sudokurutnätet som en specifik plats är på
+    Integer[][] sudoku = new Integer[9][9];
     Tile[][] tiles = new Tile[9][9];
     Solver(){
         for(int i = 0; i<= 8; i++){
@@ -13,6 +16,7 @@ public class Solver {
             }
         }
     }
+    //En klass som håller koll på koordinater
     private class Coords{
         int x;
         int y;
@@ -21,6 +25,7 @@ public class Solver {
             this.y = y;
         }
     }
+    //En klass som sparar en lista med koordinater för varje rad, kolumn, och sektion av sudokurutnätet som en specifik plats är på
     private class Tile{
 
         List<Coords> cols;
@@ -90,12 +95,40 @@ public class Solver {
 
 
     }
+    //Kollar om en placerad siffra går att placera tillsammans med checklist
+    private Boolean checkValid(int x, int y){
+        return checkList(tiles[x][y].cols)&&checkList(tiles[x][y].rows)&&checkList(tiles[x][y].section);
+    }
+    private Boolean checkList(List<Coords> list){
+        ArrayList<Integer> values = new ArrayList();
+        for(Coords c : list){
+            System.out.println(sudoku[c.x][c.y]);
+            if(sudoku[c.x][c.y] != null){
+                System.out.println(sudoku[c.x][c.y]);
+                values.add(sudoku[c.x][c.y]);
+            }
+        }
+        System.out.println("hashsetlängd"+new HashSet(values).size());
+        System.out.println("listlängd"+values.size());
+        return new HashSet(values).size()==values.size();
+
+    }
+
+
+
+
 
     public static void main(String[] args){
         Solver solver = new Solver();
         for(Coords t : solver.tiles[3][1].section){
-            System.out.println(t.x+", "+t.y);
+           // System.out.println(t.x+", "+t.y);
         }
+
+        solver.sudoku[0][0]=1;
+        solver.sudoku[2][3]=1;
+        solver.checkValid(0,0);
+        //System.out.println(solver.sudoku[0][0]);
+        System.out.println( solver.checkValid(0,0));
     }
 
 
