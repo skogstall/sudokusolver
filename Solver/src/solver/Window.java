@@ -13,6 +13,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -42,8 +44,14 @@ public class Window extends Application{
         HBox knappar = new HBox();
         Button button1 = new Button("Solve");
         Button button2 = new Button("Clear");
+        button1.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 14));
+        button2.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 14));
+        button1.setPadding(Insets.EMPTY);
+        button2.setPadding(Insets.EMPTY);
         button1.setPrefSize(50,30);
         button2.setPrefSize(50,30);
+        button1.setStyle("-fx-background-color: #F6CED8;");
+        button2.setStyle("-fx-background-color: #F6CED8;");
         ArrayList<Integer> nbr = new ArrayList<>();
         for(int i = 1; i<=81; i++){
             TextField t = new TextField(){
@@ -53,6 +61,7 @@ public class Window extends Application{
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
+            t.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 20));
             tilePane.getChildren().add(t);
             tilePane.setMargin(t, new Insets(3));
         }
