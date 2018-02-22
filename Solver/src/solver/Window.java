@@ -46,7 +46,10 @@ public class Window extends Application{
         button2.setPrefSize(50,30);
         ArrayList<Integer> nbr = new ArrayList<>();
         for(int i = 1; i<=81; i++){
-            TextField t = new TextField();
+            TextField t = new TextField(){
+                @Override
+                public void paste() { }
+            };
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
