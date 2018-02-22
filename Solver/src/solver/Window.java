@@ -2,16 +2,17 @@ package solver;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -50,14 +51,15 @@ public class Window extends Application{
         button2.setPadding(Insets.EMPTY);
         button1.setPrefSize(50,30);
         button2.setPrefSize(50,30);
-        button1.setStyle("-fx-background-color: #FBEFF2;");
-        button2.setStyle("-fx-background-color: #FBEFF2;");
+        button1.setStyle("-fx-background-color: #F6CED8;");
+        button2.setStyle("-fx-background-color: #F6CED8;");
         ArrayList<Integer> nbr = new ArrayList<>();
         for(int i = 1; i<=81; i++){
             TextField t = new TextField(){
                 @Override
                 public void paste() { }
             };
+
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
@@ -77,6 +79,29 @@ public class Window extends Application{
         knappar.setMargin(button2, new Insets(6));
         groot.setTop(tilePane);
         groot.setBottom(knappar);
+
+        tilePane.addEventFilter( KeyEvent.KEY_PRESSED, ( KeyEvent event ) ->
+        {
+            if ( event.getCode() == KeyCode.ENTER )
+            {
+                KeyEvent newEvent
+                        = new KeyEvent(
+                        null,
+                        null,
+                        KeyEvent.KEY_PRESSED,
+                        "",
+                        "\t",
+                        KeyCode.TAB,
+                        event.isShiftDown(),
+                        event.isControlDown(),
+                        event.isAltDown(),
+                        event.isMetaDown()
+                );
+
+                Event.fireEvent( event.getTarget(), newEvent );
+                event.consume();
+            }
+        } );
     }
 
 
