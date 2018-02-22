@@ -19,33 +19,33 @@ public class Window extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BorderPane groot = new BorderPane();
-        TilePane tilePane = new TilePane();
-        tilePane.setPrefRows(9);
-        tilePane.setPrefColumns(9);
-        tilePane.setPrefWidth();
-        tilePane.setPrefHeight();
-
-        HBox knappar = new HBox();
-
-        Scene scene = new Scene(groot, 500, 500);
-        primaryStage.setTitle("Skogstall och Hackspetts Sudoku");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
-
-        for(int i = 1; i<81; i++){
-            TextField t = new TextField();
-            t.setPrefSize(40,40);
-            tilePane.getChildren().add(t);
-        }
-        for(int i = 0; i< tilePane.getChildren().size() - 1; i++){
-        }
-
-
-
-
-        groot.setTop(tilePane);
+//        BorderPane groot = new BorderPane();
+//        TilePane tilePane = new TilePane();
+//        tilePane.setPrefRows(9);
+//        tilePane.setPrefColumns(9);
+//        tilePane.setPrefWidth();
+//        tilePane.setPrefHeight();
+//
+//        HBox knappar = new HBox();
+//
+//        Scene scene = new Scene(groot, 500, 500);
+//        primaryStage.setTitle("Skogstall och Hackspetts Sudoku");
+//        primaryStage.setScene(scene);
+//        primaryStage.setResizable(false);
+//        primaryStage.show();
+//
+//        for(int i = 1; i<81; i++){
+//            TextField t = new TextField();
+//            t.setPrefSize(40,40);
+//            tilePane.getChildren().add(t);
+//        }
+//        for(int i = 0; i< tilePane.getChildren().size() - 1; i++){
+//        }
+//
+//
+//
+//
+//        groot.setTop(tilePane);
 
     }
 }
