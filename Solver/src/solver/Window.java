@@ -15,6 +15,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Window extends Application{
     public static void main(String[] args){
         launch(args);
@@ -42,7 +44,7 @@ public class Window extends Application{
         Button button2 = new Button("Clear");
         button1.setPrefSize(50,30);
         button2.setPrefSize(50,30);
-
+        ArrayList<Integer> nbr = new ArrayList<>();
         for(int i = 1; i<=81; i++){
             TextField t = new TextField();
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
@@ -60,9 +62,7 @@ public class Window extends Application{
         knappar.setStyle("-fx-background-color: #424242;");
         knappar.getChildren().addAll(button1,button2);
         knappar.setMargin(button1, new Insets(6));
-        for(int i=1; i<81; i++){
-            tilePane.getChildren().get()
-        }
+        knappar.setMargin(button2, new Insets(6));
         groot.setTop(tilePane);
         groot.setBottom(knappar);
     }
