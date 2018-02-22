@@ -102,20 +102,55 @@ public class Solver {
     private Boolean checkList(List<Coords> list){
         ArrayList<Integer> values = new ArrayList();
         for(Coords c : list){
-            System.out.println(sudoku[c.x][c.y]);
             if(sudoku[c.x][c.y] != null){
-                System.out.println(sudoku[c.x][c.y]);
                 values.add(sudoku[c.x][c.y]);
             }
         }
-        System.out.println("hashsetlängd"+new HashSet(values).size());
-        System.out.println("listlängd"+values.size());
-        return new HashSet(values).size()==values.size();
+        return ((new HashSet(values).size())==values.size());
 
     }
 
 
+    private Boolean solve(int x, int y){
+        if(y>8){
+            return true;
+        }
+        else{
+            int x1;
+            int y1;
+            if( x < 8 ){
+                x1 = x+1;
+                y1 = y;
+            }
+            else{
+                x1= 0;
+                y1 = y+1;
+            }
 
+
+            if(sudoku[x][y]==null){
+                for(int i = 1; i<= 9; i++){
+                    sudoku[x][y] = i;
+                    if (checkValid(x,y)){
+                        if(solve(x1,y1)){
+                            return true;
+                        }
+                        sudoku[x][y] = null;
+                    }
+                    sudoku[x][y] = null;
+                }
+                return false;
+            }
+            else{
+                if (checkValid(x,y)){
+                    if(solve(x1,y1)){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+    }
 
 
     public static void main(String[] args){
@@ -125,11 +160,72 @@ public class Solver {
         }
 
         solver.sudoku[0][0]=1;
-        solver.sudoku[2][3]=1;
-        solver.checkValid(0,0);
+        solver.sudoku[1][0]=2;
+        solver.sudoku[2][0]=3;
+        solver.sudoku[3][0]=4;
+        solver.sudoku[4][0]=5;
+        solver.sudoku[5][0]=6;
+        solver.sudoku[6][0]=7;
+        solver.sudoku[7][0]=8;
+        solver.sudoku[8][0]=9;
+        solver.sudoku[0][1]=4;
+        solver.sudoku[1][1]=5;
+        solver.sudoku[2][1]=6;
+        solver.sudoku[0][2]=7;
+        solver.sudoku[1][2]=8;
+        solver.sudoku[2][2]=9;
+
+        solver.sudoku[0][3]=2;
+        solver.sudoku[0][4]=3;
+        solver.sudoku[0][5]=5;
+        solver.sudoku[0][6]=6;
+        solver.sudoku[0][7]=8;
+        solver.sudoku[0][8]=9;
+
+        for(int i = 0; i<= 8; i++){
+            for(int j = 0; j<= 8; j++){
+                if(solver.checkValid(j,i)){
+                    System.out.print(" O ");
+                }
+                else{
+                    System.out.print(" X ");
+                }
+            }
+            System.out.println();
+        }
+
+
+
+        //solver.sudoku[2][3]=1;
+        //solver.checkValid(0,0);
         //System.out.println(solver.sudoku[0][0]);
-        System.out.println( solver.checkValid(0,0));
+       System.out.println( solver.solve(0,0));
+
+        for(int i = 0; i<= 8; i++){
+            for(int j = 0; j<= 8; j++){
+                if(solver.sudoku[j][i]!=null){
+                    System.out.print("["+solver.sudoku[j][i]+"]");
+                }
+                else{
+                    System.out.print("[0]");
+                }
+
+            }
+            System.out.println();
+        }
+        for(int i = 0; i<= 8; i++){
+            for(int j = 0; j<= 8; j++){
+                if(solver.checkValid(j,i)){
+                    System.out.print(" O ");
+                }
+                else{
+                    System.out.print(" X ");
+                }
+            }
+            System.out.println();
+        }
     }
+
 
 
 }
