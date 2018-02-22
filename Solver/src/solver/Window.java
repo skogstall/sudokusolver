@@ -98,27 +98,13 @@ public class Window extends Application{
         {
             if ( event.getCode() == KeyCode.BACK_SPACE )
             {
-                KeyEvent newEvent
-                        = new KeyEvent(
-                        null,
-                        null,
-                        KeyEvent.KEY_PRESSED,
-                        "",
-                        "\t",
-
-                        KeyCode.TAB,
-                        true,
-                        event.isControlDown(),
-                        event.isAltDown(),
-                        event.isMetaDown()
-                );
+                KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED,"", "\t", KeyCode.TAB, true, false,false,false);
                 Event.fireEvent( event.getTarget(), newEvent );
             }
         } );
     }
 
     public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
-
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
@@ -132,19 +118,7 @@ public class Window extends Application{
                     }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
                         e.consume();
                     }
-                    KeyEvent newEvent
-                            = new KeyEvent(
-                            null,
-                            null,
-                            KeyEvent.KEY_PRESSED,
-                            "",
-                            "\t",
-                            KeyCode.TAB,
-                            e.isShiftDown(),
-                            e.isControlDown(),
-                            e.isAltDown(),
-                            e.isMetaDown()
-                    );
+                    KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED, "", "\t", KeyCode.TAB,false,false,false,false);
                     Event.fireEvent( e.getTarget(), newEvent );
                 }else{
                     e.consume();
