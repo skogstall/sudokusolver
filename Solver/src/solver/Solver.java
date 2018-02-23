@@ -148,7 +148,7 @@ public class Solver {
 
     /**
      * Tries to solve the sudoku.
-     * @return boolea true if the sudoku was solved, otherwise false.
+     * @return true if the sudoku was solved, otherwise false.
      */
     public boolean solve(){
         return solve(0,0);
