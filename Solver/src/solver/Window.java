@@ -87,8 +87,8 @@ public class Window extends Application{
                 utput(tilePane, solver.getSudoku());
             }
             else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
                 alert.setContentText("No solution found");
                 alert.setHeaderText(null);
                 alert.showAndWait();
