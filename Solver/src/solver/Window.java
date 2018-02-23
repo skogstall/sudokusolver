@@ -24,7 +24,7 @@ public class Window extends Application{
         launch(args);
     }
 
-    public void color(TilePane tilePane, int startValue){
+    private void color(TilePane tilePane, int startValue){
         for(int i = startValue; i<startValue +27; i= i +9) {
             tilePane.getChildren().get(i).setStyle("-fx-background-color: #F5A9BC;");
             tilePane.getChildren().get(i + 1).setStyle("-fx-background-color: #F5A9BC;");
@@ -32,7 +32,7 @@ public class Window extends Application{
         }
     }
 
-    public void utput(TilePane tilePane, int[] lista){
+    private void utput(TilePane tilePane, int[] lista){
         for(int i=0; i<81; i++){
             ((TextField) tilePane.getChildren().get(i)).setText(Integer.toString(lista[i]));
         }
@@ -74,12 +74,12 @@ public class Window extends Application{
                     }
                 }
             });
-            t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
+            t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation());
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
             t.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 20));
             tilePane.getChildren().add(t);
-            tilePane.setMargin(t, new Insets(3));
+            TilePane.setMargin(t, new Insets(3));
         }
         button1.setOnAction(event -> {
             Solver solver = new Solver(getValues(tilePane));
@@ -107,31 +107,30 @@ public class Window extends Application{
         tilePane.setStyle("-fx-background-color: #B4045F;");
         knappar.setStyle("-fx-background-color: #424242;");
         knappar.getChildren().addAll(button1,button2);
-        knappar.setMargin(button1, new Insets(6));
-        knappar.setMargin(button2, new Insets(6));
+        HBox.setMargin(button1, new Insets(6));
+        HBox.setMargin(button2, new Insets(6));
         groot.setTop(tilePane);
         groot.setBottom(knappar);
 
     }
-    public int[] getValues(TilePane pane){
+    private int[] getValues(TilePane pane){
         int[] array = new int[81];
         for(int i = 0; i<=80; i++){
             int value = 0;
             TextField f = (TextField)pane.getChildren().get(i);
             try{ value = Integer.parseInt(f.getCharacters().toString());}
             catch(Exception e){
-
             }
             array[i]=value;
         }
         return array;
     }
-    public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
+    private EventHandler<KeyEvent> numeric_Validation() {
         return new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent e) {
                 TextField txt_TextField = (TextField) e.getSource();
-                if (txt_TextField.getText().length() >= max_Lengh) {
+                if (txt_TextField.getText().length() >= 1) {
                     e.consume();
                 }
                 if(e.getCharacter().matches("[1-9.]")){

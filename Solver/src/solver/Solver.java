@@ -7,9 +7,15 @@ import java.util.List;
 public class Solver {
     //Håller koll på värdena för sudukorutnätet
     //Håller koll på vilken rad, kolumn, och sektion av sudokurutnätet som en specifik plats är på
-    Integer[][] sudoku = new Integer[9][9];
-    Tile[][] tiles = new Tile[9][9];
-    Solver(int[] arr){
+    private Integer[][] sudoku = new Integer[9][9];
+    private Tile[][] tiles = new Tile[9][9];
+
+    /**
+     * Creates a Solver.
+     *
+     * @param arr int[] with values 0-9
+     * */
+    public Solver(int[] arr){
         for(int i = 0; i<= 8; i++){
             for(int j = 0; j<= 8; j++){
                 tiles[i][j] = new Tile(i,j);
@@ -29,6 +35,12 @@ public class Solver {
         }
 
     }
+
+    /**
+     * Gets the values for the sudoku-tiles that is stored in the Solver
+     *
+     * @return int[] with values 0-9 in each index.
+     * */
     public int[] getSudoku(){
         int[] arr = new int[81];
         int index = 0;
@@ -61,23 +73,23 @@ public class Solver {
             section = generateSec(x,y);
         }
         private List<Coords> generateCol(int y){
-            List<Coords> cols = new ArrayList();
+            List<Coords> cols = new ArrayList<>();
             for(int i = 0; i<= 8;i++){
                 cols.add(new Coords(i,y));
             }
             return cols;
         }
         private List<Coords> generateRow(int x){
-            List<Coords> rows = new ArrayList();
+            List<Coords> rows = new ArrayList<>();
             for(int i = 0; i<= 8;i++){
                 rows.add(new Coords(x,i));
             }
             return rows;
         }
         private List<Coords> generateSec(int x, int y){
-            List<Integer> xc = new ArrayList();
-            List<Integer> yc = new ArrayList();
-            List<Coords> section = new ArrayList();
+            List<Integer> xc = new ArrayList<>();
+            List<Integer> yc = new ArrayList<>();
+            List<Coords> section = new ArrayList<>();
 
             if(x < 3){
                 xc.add(0);
@@ -124,16 +136,20 @@ public class Solver {
         return checkList(tiles[x][y].cols)&&checkList(tiles[x][y].rows)&&checkList(tiles[x][y].section);
     }
     private Boolean checkList(List<Coords> list){
-        ArrayList<Integer> values = new ArrayList();
+        ArrayList<Integer> values = new ArrayList<>();
         for(Coords c : list){
             if(sudoku[c.x][c.y] != null){
                 values.add(sudoku[c.x][c.y]);
             }
         }
-        return ((new HashSet(values).size())==values.size());
+        return ((new HashSet<>(values).size())==values.size());
 
     }
 
+    /**
+     * Tries to solve the sudoku.
+     * @return boolea true if the sudoku was solved, otherwise false.
+     */
     public boolean solve(){
         return solve(0,0);
     }
