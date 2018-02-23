@@ -24,7 +24,6 @@ public class Solver {
                 else{
                     sudoku[i][j] = null;
                 }
-                System.out.println(arr[index]);
                 index++;
             }
         }
@@ -36,7 +35,6 @@ public class Solver {
         for(int i = 0; i <= 8; i++){
             for(int j = 0; j <= 8; j++){
                 arr[index] = sudoku[i][j] ;
-                System.out.println(arr[index]);
                 index++;
             }
         }
@@ -179,48 +177,4 @@ public class Solver {
             }
         }
     }
-
-
-    public static void main(String[] args){
-        /*Solver solver = new Solver();
-        solver.sudoku[1][1]=1;
-        for(int i = 0; i<= 8; i++){
-            for(int j = 0; j<= 8; j++){
-                if(solver.checkValid(j,i)){
-                    System.out.print(" O ");
-                }
-                else{
-                    System.out.print(" X ");
-                }
-            }
-            System.out.println();
-        }
-       System.out.println( solver.solve(0,0));
-        for(int i = 0; i<= 8; i++){
-            for(int j = 0; j<= 8; j++){
-                if(solver.sudoku[j][i]!=null){
-                    System.out.print("["+solver.sudoku[j][i]+"]");
-                }
-                else{
-                    System.out.print("[0]");
-                }
-
-            }
-            System.out.println();
-        }
-        for(int i = 0; i<= 8; i++){
-            for(int j = 0; j<= 8; j++){
-                if(solver.checkValid(j,i)){
-                    System.out.print(" O ");
-                }
-                else{
-                    System.out.print(" X ");
-                }
-            }
-            System.out.println();
-        }*/
-    }
-
-
-
 }
