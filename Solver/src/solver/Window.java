@@ -79,7 +79,6 @@ public class Window extends Application{
                     }
                 }
             });
-
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
@@ -118,15 +117,6 @@ public class Window extends Application{
         groot.setTop(tilePane);
         groot.setBottom(knappar);
 
-
-        tilePane.addEventFilter( KeyEvent.KEY_PRESSED, ( KeyEvent event ) ->
-        {
-            if ( event.getCode() == KeyCode.BACK_SPACE )
-            {
-                KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED,"", "\t", KeyCode.TAB, true, false,false,false);
-                Event.fireEvent( event.getTarget(), newEvent );
-            }
-        } );
     }
     public int[] getValues(TilePane pane){
         int[] array = new int[81];
@@ -155,8 +145,6 @@ public class Window extends Application{
                     }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
                         e.consume();
                     }
-                    KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED, "", "\t", KeyCode.TAB,false,false,false,false);
-                    Event.fireEvent( e.getTarget(), newEvent );
                 }else{
                     e.consume();
                 }
@@ -164,5 +152,3 @@ public class Window extends Application{
         };
     }
 }
-
-//#FBEFF2
