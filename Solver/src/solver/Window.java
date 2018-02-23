@@ -98,6 +98,7 @@ public class Window extends Application{
         groot.setTop(tilePane);
         groot.setBottom(knappar);
 
+
         tilePane.addEventFilter( KeyEvent.KEY_PRESSED, ( KeyEvent event ) ->
         {
             if ( event.getCode() == KeyCode.BACK_SPACE )
@@ -107,7 +108,19 @@ public class Window extends Application{
             }
         } );
     }
+    public int[] getValues(TilePane pane){
+        int[] array = new int[81];
+        for(int i = 0; i<=80; i++){
+            int value = 0;
+            TextField f = (TextField)pane.getChildren().get(i);
+            try{ value = Integer.parseInt(f.getCharacters().toString());}
+            catch(Exception e){
 
+            }
+            array[i]=value;
+        }
+        return array;
+    }
     public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
         return new EventHandler<KeyEvent>() {
             @Override

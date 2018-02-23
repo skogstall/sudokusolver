@@ -9,12 +9,33 @@ public class Solver {
     //Håller koll på vilken rad, kolumn, och sektion av sudokurutnätet som en specifik plats är på
     Integer[][] sudoku = new Integer[9][9];
     Tile[][] tiles = new Tile[9][9];
-    Solver(){
+    Solver(int[] arr){
         for(int i = 0; i<= 8; i++){
             for(int j = 0; j<= 8; j++){
                 tiles[i][j] = new Tile(i,j);
             }
         }
+        int index = 0;
+        for(int i = 0; i <= 8; i++){
+            for(int j = 0; j <= 8; j++){
+                sudoku[i][j] = arr[index];
+                System.out.println(arr[index]);
+                index++;
+            }
+        }
+
+    }
+    public int[] getSudoku(){
+        int[] arr = new int[81];
+        int index = 0;
+        for(int i = 0; i <= 8; i++){
+            for(int j = 0; j <= 8; j++){
+                arr[index] = sudoku[i][j] ;
+                System.out.println(arr[index]);
+                index++;
+            }
+        }
+        return arr;
     }
     //En klass som håller koll på koordinater
     private class Coords{
@@ -154,7 +175,7 @@ public class Solver {
 
 
     public static void main(String[] args){
-        Solver solver = new Solver();
+        /*Solver solver = new Solver();
         solver.sudoku[1][1]=1;
         for(int i = 0; i<= 8; i++){
             for(int j = 0; j<= 8; j++){
@@ -190,7 +211,7 @@ public class Solver {
                 }
             }
             System.out.println();
-        }
+        }*/
     }
 
 
