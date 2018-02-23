@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -86,6 +87,19 @@ public class Window extends Application{
             tilePane.getChildren().add(t);
             tilePane.setMargin(t, new Insets(3));
         }
+        button1.setOnAction(event -> {
+            Solver solver = new Solver(getValues(tilePane));
+            if(solver.solve()){
+                utput(tilePane, solver.getSudoku());
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setContentText("No solution found");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+            }
+        });
         button2.setOnAction(event ->{
             for(int i= 0; i<81;i++){
                 ((TextField)tilePane.getChildren().get(i)).clear();

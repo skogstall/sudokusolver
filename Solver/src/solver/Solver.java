@@ -18,7 +18,12 @@ public class Solver {
         int index = 0;
         for(int i = 0; i <= 8; i++){
             for(int j = 0; j <= 8; j++){
-                sudoku[i][j] = arr[index];
+                if(arr[index]>0){
+                    sudoku[i][j] = arr[index];
+                }
+                else{
+                    sudoku[i][j] = null;
+                }
                 System.out.println(arr[index]);
                 index++;
             }
@@ -131,7 +136,9 @@ public class Solver {
 
     }
 
-
+    public boolean solve(){
+        return solve(0,0);
+    }
     private Boolean solve(int x, int y){
         if(y>8){
             return true;
