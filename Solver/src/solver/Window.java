@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Window extends Application{
@@ -32,6 +33,12 @@ public class Window extends Application{
             tilePane.getChildren().get(i).setStyle("-fx-background-color: #F5A9BC;");
             tilePane.getChildren().get(i + 1).setStyle("-fx-background-color: #F5A9BC;");
             tilePane.getChildren().get(i + 2).setStyle("-fx-background-color: #F5A9BC;");
+        }
+    }
+
+    public void utput(TilePane tilePane, int[] lista){
+        for(int i=0; i<81; i++){
+            ((TextField) tilePane.getChildren().get(i)).setText(Integer.toString(lista[i]));
         }
     }
 
@@ -61,8 +68,7 @@ public class Window extends Application{
                 public void paste() { }
             };
 
-            t.focusedProperty().addListener(new ChangeListener<Boolean>()
-            {
+            t.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
                 {
