@@ -1,17 +1,20 @@
 package solver;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -57,6 +60,19 @@ public class Window extends Application{
                 @Override
                 public void paste() { }
             };
+
+            t.focusedProperty().addListener(new ChangeListener<Boolean>()
+            {
+                @Override
+                public void changed(ObservableValue<? extends Boolean> arg0, Boolean oldPropertyValue, Boolean newPropertyValue)
+                {
+                    if (newPropertyValue)
+                    {
+                       t.clear();
+                    }
+                }
+            });
+
             t.addEventFilter(KeyEvent.KEY_TYPED , numeric_Validation(1));
             t.setPrefSize(40,40);
             t.setAlignment(Pos.CENTER);
@@ -81,9 +97,16 @@ public class Window extends Application{
         knappar.setMargin(button2, new Insets(6));
         groot.setTop(tilePane);
         groot.setBottom(knappar);
+
+        tilePane.addEventFilter( KeyEvent.KEY_PRESSED, ( KeyEvent event ) ->
+        {
+            if ( event.getCode() == KeyCode.BACK_SPACE )
+            {
+                KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED,"", "\t", KeyCode.TAB, true, false,false,false);
+                Event.fireEvent( event.getTarget(), newEvent );
+            }
+        } );
     }
-
-
 
     public EventHandler<KeyEvent> numeric_Validation(final Integer max_Lengh) {
         return new EventHandler<KeyEvent>() {
@@ -99,6 +122,8 @@ public class Window extends Application{
                     }else if(txt_TextField.getText().length() == 0 && e.getCharacter().matches("[.]")){
                         e.consume();
                     }
+                    KeyEvent newEvent = new KeyEvent(null, null, KeyEvent.KEY_PRESSED, "", "\t", KeyCode.TAB,false,false,false,false);
+                    Event.fireEvent( e.getTarget(), newEvent );
                 }else{
                     e.consume();
                 }

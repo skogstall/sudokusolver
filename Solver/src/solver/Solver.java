@@ -155,33 +155,7 @@ public class Solver {
 
     public static void main(String[] args){
         Solver solver = new Solver();
-        for(Coords t : solver.tiles[3][1].section){
-           // System.out.println(t.x+", "+t.y);
-        }
-
-        solver.sudoku[0][0]=1;
-        solver.sudoku[1][0]=2;
-        solver.sudoku[2][0]=3;
-        solver.sudoku[3][0]=4;
-        solver.sudoku[4][0]=5;
-        solver.sudoku[5][0]=6;
-        solver.sudoku[6][0]=7;
-        solver.sudoku[7][0]=8;
-        solver.sudoku[8][0]=9;
-        solver.sudoku[0][1]=4;
-        solver.sudoku[1][1]=5;
-        solver.sudoku[2][1]=6;
-        solver.sudoku[0][2]=7;
-        solver.sudoku[1][2]=8;
-        solver.sudoku[2][2]=9;
-
-        solver.sudoku[0][3]=2;
-        solver.sudoku[0][4]=3;
-        solver.sudoku[0][5]=5;
-        solver.sudoku[0][6]=6;
-        solver.sudoku[0][7]=8;
-        solver.sudoku[0][8]=9;
-
+        solver.sudoku[1][1]=1;
         for(int i = 0; i<= 8; i++){
             for(int j = 0; j<= 8; j++){
                 if(solver.checkValid(j,i)){
@@ -193,14 +167,7 @@ public class Solver {
             }
             System.out.println();
         }
-
-
-
-        //solver.sudoku[2][3]=1;
-        //solver.checkValid(0,0);
-        //System.out.println(solver.sudoku[0][0]);
        System.out.println( solver.solve(0,0));
-
         for(int i = 0; i<= 8; i++){
             for(int j = 0; j<= 8; j++){
                 if(solver.sudoku[j][i]!=null){
